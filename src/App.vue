@@ -1,30 +1,30 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="leading-normal tracking-normal" id="main-body">
+    <div class="flex flex-wrap">
+      <Sidebar />
+      <div
+        class="w-full bg-white-100 pl-0 lg:pl-64 min-h-screen"
+        id="main-content"
+      >
+        <Navbar />
+        <div class="p-6 h-5/6">
+          <router-view />
+        </div>
+      </div>
+    </div>
   </div>
-  <router-view />
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts" setup>
+import Sidebar from "./components/Sidebar.vue";
+import Navbar from "./components/Navbar.vue";
+import { Store, useStore } from "vuex";
+import { MainState } from "interfaces/store";
 
-#nav {
-  padding: 30px;
+const store: Store<MainState> = useStore();
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+/**
+ * On page load fill store with data
+ */
+store.dispatch("fetchData");
+</script>

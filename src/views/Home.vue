@@ -1,18 +1,19 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div class="flex justify-center items-center h-full">
+    <div id="wrapper">
+      <ChartFilters />
+      <div id="chart-line">
+        <Temperature />
+      </div>
+      <div id="chart-line2">
+        <Humidity />
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-
-@Options({
-  components: {
-    HelloWorld,
-  },
-})
-export default class Home extends Vue {}
+<script lang="ts" setup>
+import Temperature from "@/components/charts/Temperature.vue";
+import Humidity from "@/components/charts/Humidity.vue";
+import ChartFilters from "@/components/ChartFilters.vue";
 </script>
